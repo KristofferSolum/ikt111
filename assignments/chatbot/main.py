@@ -1,8 +1,8 @@
-import chatbot
+import chatbot_class
 
 
 def main():
-    chat = chatbot.Bot("Chat")
+    chat = chatbot_class.Bot("Chat")
     chat.chatting()
     return 0
 
