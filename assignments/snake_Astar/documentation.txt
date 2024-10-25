@@ -1,0 +1,31 @@
+In the Snake task 2, I created the function create_path, which returns a path to the apple if a valid path exists.
+This function is a BFS algorithm that explores all possible moves for each node, level by level, until the snake reaches the apple.
+Therefore, not many changes were needed.
+
+
+The first thing I did was define a heuristic function that calculates the Manhattan distance.
+I chose the Manhattan distance because it is calculated more quickly, and the snake can only move in four directions.
+This means that the snake won't be able to take a shorter path if we calculate the actual distance.
+
+
+Next, I made the necessary changes in the create_path function:
+
+ - Retrieves the position of the apple.
+
+ - Changes the Queue element to a tuple where I also add values for f_cost and g_cost.
+
+ - Converts visited_positions to a set() instead of a list for faster searches through explored positions.
+ To do this I had to convert lists to tuples because lists cannot be hashed.
+
+ - To extract nodes from the queue, I use heapq.
+ Heapq will always provide the node in the queue with the lowest f_cost, allowing us to explore the nodes closest to the target first.
+
+ - The program then loops through all neighboring nodes, calculates the new g and f costs,
+ and adds the neighboring nodes to the queue if their positions have not been explored before. This is checked to avoid
+ the program getting stuck in an infinite loop and also because we don't want to explore a longer path to the same position.
+
+
+The limitations of the program are that it only investigates the quickest route to the apple,
+and has no strategy for further gameplay after reaching the apple.
+This means that after a while, it eventually traps itself and cannot find a way to the apple.
+What makes it difficult to solve this problem is that we do not know where the apple will appear next.
