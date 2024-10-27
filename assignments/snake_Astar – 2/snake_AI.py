@@ -11,15 +11,15 @@ def calculate_space_score(position, game_state):
     length, width = len(game_state), len(game_state[0])
     space_count = 0
 
-    for move_x, move_y in[(-1, 0), (1, 0), (0, -1), (0, 1)]:
-        for i in range(1, 4):
-            new_x, new_y = x + move_x*i, y + move_y*i
-
+    for move_x in [x for x in range(-2, 3) if x != 0]:
+        new_x = x + move_x
+        for move_y in [y for y in range(-2, 3) if y != 0]:
+            new_y = y + move_y
             if 0 <= new_x < length and 0 <= new_y < width:
                 if game_state[new_x][new_y] == 0:
                     space_count += 1
 
-    return -1 * space_count
+    return -0.5 * space_count
 
 
 def create_path(snake):
